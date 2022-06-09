@@ -515,30 +515,6 @@ describe('<webview> tag', function () {
     });
   });
 
-  describe('new-window event', () => {
-    it('emits when window.open is called', async () => {
-      loadWebView(webview, {
-        src: `file://${fixtures}/pages/window-open.html`,
-        allowpopups: true
-      });
-      const { url, frameName } = await waitForEvent(webview, 'new-window');
-
-      expect(url).to.equal('http://host/');
-      expect(frameName).to.equal('host');
-    });
-
-    it('emits when link with target is called', async () => {
-      loadWebView(webview, {
-        src: `file://${fixtures}/pages/target-name.html`,
-        allowpopups: true
-      });
-      const { url, frameName } = await waitForEvent(webview, 'new-window');
-
-      expect(url).to.equal('http://host/');
-      expect(frameName).to.equal('target');
-    });
-  });
-
   describe('ipc-message event', () => {
     it('emits when guest sends an ipc message to browser', async () => {
       loadWebView(webview, {
